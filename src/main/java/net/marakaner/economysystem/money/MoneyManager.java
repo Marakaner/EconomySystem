@@ -12,7 +12,7 @@ public class MoneyManager {
         this.sqlManager = sqlManager;
 
         if(this.sqlManager.isConnected()) {
-            sqlManager.executeUpdate("CREATE TABLE IF NOT EXISTS money_info(UUID VARCHAR(100), money LONG, bank_money LONG)");
+            sqlManager.executeUpdate("CREATE TABLE IF NOT EXISTS money_info(UUID VARCHAR(100), money INT(255), bank_money INT(255))");
         }
     }
 

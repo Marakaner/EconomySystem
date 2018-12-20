@@ -7,20 +7,20 @@ import java.util.function.Consumer;
 
 public class Account {
 
-    private long money;
+    private int money;
     private BankAccount bankAccount;
 
     public Account(UUID uniqueId, Consumer<Account> finished) {
         try {
             EconomySystem.getInstance().getSqlManager().executeQuery("SELECT * FROM money_info WHERE UUID = '" + uniqueId.toString() + "'", map -> {
                 if (map.isEmpty()) {
-                    EconomySystem.getInstance().getSqlManager().executeUpdate("INSERT INTO money_info(money,bank_money) VALUES ('" + 1000 + "', '" + 0 + "')");
+                    EconomySystem.getInstance().getSqlManager().executeUpdate("INSERT INTO money_info(UUID,money,bank_money) VALUES ('" + uniqueId.toString() + "', '" + 1000 + "', '" + 0 + "')");
                     this.money = 1000;
                     bankAccount = new BankAccount(0);
                     finished.accept(this);
                 } else {
-                    this.money = (long) map.get("money");
-                    this.bankAccount = new BankAccount((Long) map.get("bank_money"));
+                    this.money = (int) map.get("money");
+                    this.bankAccount = new BankAccount((int) map.get("bank_money"));
                     finished.accept(this);
                 }
             }, "money", "bank_money");
@@ -29,7 +29,7 @@ public class Account {
         }
     }
 
-    public long getMoney() {
+    public int getMoney() {
         return money;
     }
 

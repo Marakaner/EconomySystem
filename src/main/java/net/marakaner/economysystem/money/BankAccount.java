@@ -2,13 +2,13 @@ package net.marakaner.economysystem.money;
 
 public class BankAccount {
 
-    private long money;
+    private int money;
 
-    public BankAccount(long money) {
+    public BankAccount(int money) {
         this.money = money;
     }
 
-    public long getMoney() {
+    public int getMoney() {
         return money;
     }
 }

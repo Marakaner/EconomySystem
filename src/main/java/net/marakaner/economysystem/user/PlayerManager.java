@@ -47,6 +47,10 @@ public class PlayerManager {
         }
     }
 
+    public EconomyPlayer getEconomyPlayer(UUID uniqueId) {
+        return this.cachedPlayers.containsKey(uniqueId) ? this.cachedPlayers.get(uniqueId) : null;
+    }
+
     public void getPlayerName(UUID uniqueId, Consumer<String> playerName) {
         sqlManager.executeQuery("SELECT * FROM player_info WHERE UUID = '" + uniqueId.toString() + "'", map -> {
             if(map.isEmpty()) {

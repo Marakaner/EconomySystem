@@ -1,8 +1,7 @@
 name: EconomySystem
-version: [ALPHA] 0.1
+version: ALPHA-BUILD
 author: Marakaner | Alex
 main: net.marakaner.economysystem.EconomySystem
 
-
-
 commands:
+  test:

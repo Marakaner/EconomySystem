@@ -1,5 +1,7 @@
 package net.marakaner.economysystem;
 
+import net.marakaner.economysystem.commands.TestCommand;
+import net.marakaner.economysystem.listener.JoinListener;
 import net.marakaner.economysystem.money.MoneyManager;
 import net.marakaner.economysystem.sql.SQLManager;
 import net.marakaner.economysystem.user.PlayerManager;
@@ -45,7 +47,7 @@ public class EconomySystem extends JavaPlugin {
                 cfg.getString("MySQL.port"),
                 cfg.getString("MySQL.database"),
                 cfg.getString("MySQL.user"),
-                cfg.getString("MySQL.port"));
+                cfg.getString("MySQL.password"));
 
         this.sqlManager.connect();
 
@@ -59,12 +61,11 @@ public class EconomySystem extends JavaPlugin {
     }
 
     private void registerListener() {
-
-
+        Bukkit.getPluginManager().registerEvents(new JoinListener(), this);
     }
 
     private void registerCommands() {
-
+        this.getCommand("test").setExecutor(new TestCommand());
     }
 
     public static EconomySystem getInstance() {
