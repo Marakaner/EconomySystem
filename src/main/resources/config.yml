@@ -1,0 +1,13 @@
+# Plugin Configuration for EconomySystem
+#
+# Please notice that this is a Alpha of this Plugin. Bugs could be happend and should be reported in private messages.
+# Please do not write the bugs in the rating section. I list all bugs in the Plugin description
+
+
+MySQL:
+  enabled: false
+  host: "localhost"
+  port: 3306
+  database: "EconomySystem"
+  user: "root"
+  password: "YOUR_PASSWORD"

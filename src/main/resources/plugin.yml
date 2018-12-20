@@ -1,0 +1,8 @@
+name: EconomySystem
+version: [ALPHA] 0.1
+author: Marakaner | Alex
+main: net.marakaner.economysystem.EconomySystem
+
+
+
+commands:
