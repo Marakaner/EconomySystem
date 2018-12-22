@@ -9,9 +9,7 @@ public class JoinListener implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-        event.getPlayer().sendMessage("§cTest");
         EconomySystem.getInstance().getPlayerManager().initPlayer(event.getPlayer(), finished -> {
-            event.getPlayer().sendMessage("§aSuccessful loaded player");
         });
     }
 

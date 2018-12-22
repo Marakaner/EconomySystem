@@ -1,7 +1,14 @@
 name: EconomySystem
-version: ALPHA-BUILD
+version: 0.01
 author: Marakaner | Alex
 main: net.marakaner.economysystem.EconomySystem
+database: true
+prefix: EconomySystem
+
 
 commands:
   test:
+  money:
+    description: Manage your Money
+    aliases:
+      - mny

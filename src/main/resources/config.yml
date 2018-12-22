@@ -3,7 +3,7 @@
 # Please notice that this is a Alpha of this Plugin. Bugs could be happend and should be reported in private messages.
 # Please do not write the bugs in the rating section. I list all bugs in the Plugin description
 
-
+# The plugin will only work if the MySQL is connected
 MySQL:
   enabled: false
   host: "localhost"
@@ -11,3 +11,60 @@ MySQL:
   database: "EconomySystem"
   user: "root"
   password: "YOUR_PASSWORD"
+
+
+
+# If this is enabled, the player gets a cooldown in which he can not move or do anything
+# RECOMMEND SET TO true
+
+
+# Here you can set the prefix. The prefix is shown before every message.
+Prefix: "&8[&2EconomySystem&8]"
+
+
+# Here you can change the setting if a player should get a cooldown on login.
+# During the cooldown he can not move or do other actions
+# IT'S RECOMMEND TO LET THIS ON TRUE
+
+Login:
+  cooldown: true
+  loaded: "&aYour player data is loaded."
+  error: "&cYour player data can not be loaded. Please contact a Admin"
+
+Money:
+  startmoney: 1000
+
+  balance: "&aYour Balance is&8: &b%MONEY% Coins"
+  balance_other: "&aThe Balance of &3%PLAYER% &ais&8: &b%MONEY% Coins"
+  transfer: "&aYou payed &3%PLAYER% &b%MONEY% Coins"
+  transfer_other: "&3%PLAYER% &apayed you &b%MONEY% Coins"
+  set: "&aYou set the Coins of &3%PLAYER% &ato &b%MONEY% Coins"
+  set_other: "&aYour money was set to &b%MONEY% Coins."
+  add: "&aYou added &b%MONEY% Coins &ato &3%PLAYER%&8. &aNew Balance&8: &b%BALANCE% Coins"
+  add_other: "&b%MONEY% Coins &aare added to your account!"
+  remove: "&aYou removed &b%MONEY% Coins &afrom &3%PLAYER%&8. &aNew Balance&8: &b%BALANCE% Coins"
+  remove_other: "&b%MONEY% Coins &aare removed from your account!"
+  reset: "&aYou reset the money of %PLAYER%"
+  reset_other: "&aYour money was reset."
+
+  help_map:
+    - "&3Help for the command /money"
+    - "-  &a/money &8- &7Look how muck money do you have"
+    - "-  &a/money transfer [PLAYER] [AMOUNT] &8- &7Transfer the amount of money to the given player"
+
+  help_map_admin:
+    - "&3Help for the command /money"
+    - "&8-  &a/money &8- &7Look how muck money do you have"
+    - "&8-  &a/money [PLAYER] &8- &7Look how much money someone else have"
+    - "&8-  &a/money add [PLAYER] [AMOUNT] &8- &7Adds the amount of money to the given player"
+    - "&8-  &a/money remove [PLAYER] [AMOUNT] &8- &7Remove the amount of money from the given player"
+    - "&8-  &a/money set [PLAYER] [AMOUNT] &8- &7Set the money of a player to the given amount"
+    - "&8-  &a/money transfer [PLAYER] [AMOUNT] &8- &7Transfer the amount of money to the given player"
+    - "&8-  &a/money delete [PLAYER] &8- &7Delete the whole money of the given player"
+
+Error:
+  player_not_found: "&cThe Player %PLAYER% could not be found."
+  wrong_syntax: "&cWrong Syntax! Do /%COMMAND% help to see the help page."
+  wrong_number: "&cYou must write a positive integer as amount."
+  less_money: "&cYou don't have this much money! &aYour money&7: &b%MONEY% Coins"
+  selfpay: "&cYou can not transfer money to yourself."

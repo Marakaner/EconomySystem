@@ -16,8 +16,4 @@ public class MoneyManager {
         }
     }
 
-    public void getBankInfo(UUID uniqueId) {
-
-    }
-
 }

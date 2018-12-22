@@ -9,13 +9,13 @@ import java.util.function.Consumer;
 public class EconomyPlayer {
 
     private UUID uniqueId;
-    private String name;
+    private String playerName;
 
     private Account account;
 
     public EconomyPlayer(Player player, Consumer<EconomyPlayer> playerConsumer) {
         this.uniqueId = player.getUniqueId();
-        this.name = player.getName();
+        this.playerName = player.getName();
 
         this.account = new Account(this.uniqueId, finishedAccount -> {
             if(finishedAccount != null) {
@@ -27,8 +27,22 @@ public class EconomyPlayer {
         });
     }
 
-    public String getName() {
-        return name;
+    public EconomyPlayer(UUID uniqueId, String playerName, Consumer<EconomyPlayer> playerConsumer) {
+        this.uniqueId = uniqueId;
+        this.playerName = playerName;
+
+        this.account = new Account(this.uniqueId, finishedAccount -> {
+            if(finishedAccount != null) {
+                this.account = finishedAccount;
+                playerConsumer.accept(this);
+            } else {
+                playerConsumer.accept(null);
+            }
+        });
+    }
+
+    public String getPlayerName() {
+        return playerName;
     }
 
     public Account getAccount() {

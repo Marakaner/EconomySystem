@@ -47,8 +47,55 @@ public class PlayerManager {
         }
     }
 
+    public void unregisterPlayer(Player player) {
+        if (this.cachedPlayers.containsKey(player)) {
+            this.cachedPlayers.remove(player.getUniqueId());
+        }
+    }
+
     public EconomyPlayer getEconomyPlayer(UUID uniqueId) {
-        return this.cachedPlayers.containsKey(uniqueId) ? this.cachedPlayers.get(uniqueId) : null;
+        return this.cachedPlayers.getOrDefault(uniqueId, null);
+    }
+
+    public EconomyPlayer getEconomyPlayer(String playerName) {
+        for(UUID player : this.cachedPlayers.keySet()) {
+            if(this.cachedPlayers.get(player).getPlayerName().equalsIgnoreCase(playerName)) {
+                return this.cachedPlayers.get(player);
+            }
+        }
+        return null;
+    }
+
+    public void getOfflinePlayer(UUID uniqueId, Consumer<EconomyPlayer> playerConsumer) {
+        sqlManager.executeQuery("SELECT * FROM player_info WHERE UUID = '" + uniqueId.toString() + "'", map -> {
+            if(map.isEmpty()) {
+                playerConsumer.accept(null);
+            } else {
+                new EconomyPlayer(uniqueId, (String) map.get("playername"), economyPlayer -> {
+                    if (economyPlayer != null) {
+                        playerConsumer.accept(economyPlayer);
+                    } else {
+                        playerConsumer.accept(null);
+                    }
+                });
+            }
+        }, "UUID", "playername");
+    }
+
+    public void getOfflinePlayer(String playerName, Consumer<EconomyPlayer> playerConsumer) {
+        sqlManager.executeQuery("SELECT * FROM player_info WHERE playername = '" + playerName + "'", map -> {
+            if(map.isEmpty()) {
+                playerConsumer.accept(null);
+            } else {
+                new EconomyPlayer(UUID.fromString((String) map.get("UUID")), (String) map.get("playername"), economyPlayer -> {
+                    if (economyPlayer != null) {
+                        playerConsumer.accept(economyPlayer);
+                    } else {
+                        playerConsumer.accept(null);
+                    }
+                });
+            }
+        }, "UUID", "playername");
     }
 
     public void getPlayerName(UUID uniqueId, Consumer<String> playerName) {
